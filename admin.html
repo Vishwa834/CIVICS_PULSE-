@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMIN | CITY SOLVER</title>
+    <title>Admin | CITY SOLVER</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -35,7 +35,7 @@
                     <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
                 </div>
                 <h1 class="text-xl font-bold text-white">Admin Authentication</h1>
-                <p class="text-xs text-gray-400">CivicPulse AI Operations Console</p><br>
+                <p class="text-xs text-gray-400">CITY SOLVER Operations Console</p><br>
                 <a style="color: yellow; " href="./index.html"><-- Go back to Home</a>
             </div>
 
@@ -154,7 +154,7 @@
 
     <script>
         function getStoredTickets() {
-            const data = localStorage.getItem('civic_tickets');
+            const data = localStorage.getItem('citysolver_tickets');
             if (data) return JSON.parse(data);
 
             // Default initial dataset
@@ -165,18 +165,18 @@
                 { id: 'CP-1004', category: 'Sanitation & Waste Overflow', description: 'Uncollected waste blocking sidewalk.', status: 'New', isDuplicate: true, assignedCrew: 'Unassigned' },
                 { id: 'CP-1005', category: 'Electrical & Lighting', description: 'Broken streetlights along main road causing visibility issues.', status: 'In Progress', isDuplicate: false, assignedCrew: 'Unassigned' }
             ];
-            localStorage.setItem('civic_tickets', JSON.stringify(defaultTickets));
+            localStorage.setItem('citysolver_tickets', JSON.stringify(defaultTickets));
             return defaultTickets;
         }
 
         function getStoredTeams() {
-            const data = localStorage.getItem('civic_teams');
+            const data = localStorage.getItem('citysolver_teams');
             if (data) return JSON.parse(data);
             const initial = [
                 { id: 'T-1', name: 'Roads Repair Team #1', spec: 'Roads & Traffic', contact: 'Capt. Miller (+1 555-8832)', status: 'On-Duty', activeTicket: 'CP-1001', progress: 65 },
                 { id: 'T-2', name: 'Sanitation Truck Unit B', spec: 'Sanitation & Garbage', contact: 'Lead Sarah (+1 555-9011)', status: 'Standby', activeTicket: 'None', progress: 0 }
             ];
-            localStorage.setItem('civic_teams', JSON.stringify(initial));
+            localStorage.setItem('citysolver_teams', JSON.stringify(initial));
             return initial;
         }
 
@@ -284,7 +284,7 @@
 
             const teams = getStoredTeams();
             teams.push({ id: 'T-' + (teams.length + 1), name, spec, contact, status: 'Standby', activeTicket: 'None', progress: 0 });
-            localStorage.setItem('civic_teams', JSON.stringify(teams));
+            localStorage.setItem('citysolver_teams', JSON.stringify(teams));
 
             e.target.reset();
             renderTeams();
@@ -375,8 +375,8 @@
                 team.progress = 25;
             }
 
-            localStorage.setItem('civic_tickets', JSON.stringify(tickets));
-            localStorage.setItem('civic_teams', JSON.stringify(teams));
+            localStorage.setItem('citysolver_tickets', JSON.stringify(tickets));
+            localStorage.setItem('citysolver_teams', JSON.stringify(teams));
             renderAdminView();
         }
 
@@ -385,7 +385,7 @@
             const t = tickets.find(x => x.id === ticketId);
             if (t) t.status = status;
 
-            localStorage.setItem('civic_tickets', JSON.stringify(tickets));
+            localStorage.setItem('citysolver_tickets', JSON.stringify(tickets));
             renderAdminView();
         }
     </script>
